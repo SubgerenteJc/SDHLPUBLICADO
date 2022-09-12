@@ -65,8 +65,8 @@ namespace TADHL
         {
             string[] values;
             DataTable tbl = new DataTable();
-            //DirectoryInfo di24 = new DirectoryInfo(@"\\10.223.208.41\Users\Administrator\Documents\DHLORDENES");
-            DirectoryInfo di24 = new DirectoryInfo(@"C:\Administración\Proyecto DHL\Ordenes");
+            DirectoryInfo di24 = new DirectoryInfo(@"\\10.223.208.41\Users\Administrator\Documents\DHLORDENES");
+            //DirectoryInfo di24 = new DirectoryInfo(@"C:\Administración\Proyecto DHL\Ordenes");
 
             FileInfo[] files24 = di24.GetFiles("*.tsv");
 
@@ -76,8 +76,8 @@ namespace TADHL
             {
                 foreach (var item in files24)
                 {
-                    //string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\DHLORDENES\" + item.Name;
-                    string sourceFile = @"C:\Administración\Proyecto DHL\Ordenes\" + item.Name;
+                    string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\DHLORDENES\" + item.Name;
+                    //string sourceFile = @"C:\Administración\Proyecto DHL\Ordenes\" + item.Name;
                     string[] strAllLines = File.ReadAllLines(sourceFile, Encoding.UTF8);
                     File.WriteAllLines(sourceFile, strAllLines.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray());
                     string lna = item.Name.ToLower();
@@ -88,118 +88,186 @@ namespace TADHL
                     if (r)
                     {
                         string substre1 = Ai_orden.Substring(0, 7);
-                        string segmentod = Ai_orden.Substring(Ai_orden.Length - 7);
-                        string Av_weightunits = "KGM";
+                       
                         //Valido que exista el segmento
-                        DataTable otds = facLabControler.ExisteSegmentos(segmentod);
-                        if (otds.Rows.Count > 0)
+                        DataTable rtds = facLabControler.ObtSegmento(Ai_orden);
+                        if (rtds.Rows.Count > 0)
                         {
-                            foreach (DataRow isegm in otds.Rows)
+                            foreach (DataRow iseg in rtds.Rows)
                             {
-                                int counter = 1;
-                                foreach (string line in File.ReadLines(sourceFile, Encoding.Default))
+                                string nseg = iseg["segmento"].ToString();
+
+
+                                DataTable otds = facLabControler.ExisteSegmentos(nseg);
+                                if (otds.Rows.Count > 0)
                                 {
-                                    if (counter > 1)
+                                    foreach (DataRow isegm in otds.Rows)
                                     {
+                                        string esegmento = isegm["segmento"].ToString();
 
-                                        values = line.Split(',');
-                                        //string col1 = values[0];
-                                        //string col2 = values[1];
-                                        //string col3 = values[2];
-                                        //string col4 = values[3];
-                                        //string col5 = values[4];
-                                        //string col6 = values[5];
-                                        string Av_cmd_code = values[6];
-                                        string descrip = values[7];
-                                        string Av_cmd_description = descrip.Replace("\"", "");
-                                        //string Av_cmd_description = values[7];
-                                        string Af_count = values[8];
-                                        string Av_countunit = values[9];
-                                        //string col11 = values[10];
-                                        //string col12 = values[11];
-                                        //string col13 = values[12];
-                                        //string col14 = values[13];
-                                        //string col15 = values[14];
-                                        string Af_weight = values[15];
-                                        //string col17 = values[16];
-                                        //string col18 = values[17];
-                                        //string col19 = values[18];
-                                        if (Av_cmd_code != "")
+                                        //NUEVA EXTRACCIÓN
+                                        string Av_weightunit = "KGM";
+
+                                        string[] lineas1 = File.ReadAllLines(sourceFile, Encoding.UTF8);
+                                        lineas1 = lineas1.Skip(2).ToArray();
+                                        foreach (string line in lineas1)
                                         {
-                                            facLabControler.GetMerca(substre1, segmentod, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunits, Af_count, Av_countunit);
+                                            string renglones = line;
+                                            char delimitador = '\t';
+                                            string[] valores = renglones.Split(delimitador);
+                                            //string col1 = valores[0].ToString();
+                                            //string col2 = valores[1].ToString();
+                                            //string col3 = valores[2].ToString();
+                                            //string col4 = valores[3].ToString();
+                                            //string col5 = valores[4].ToString();
+                                            //string col6 = valores[5].ToString();
+                                            //string col7 = valores[6].ToString();
+                                            //string col8 = valores[7].ToString();
+                                            //string Av_cmd_code2 = valores[8].ToString();
+                                            //string col10 = valores[9].ToString();
+                                            //string col11 = valores[10].ToString();
+                                            //string col12 = valores[11].ToString();
+                                            //string col13 = valores[12].ToString();
+                                            //string col14 = valores[13].ToString();
+                                            //string col15 = valores[14].ToString();
+                                            //string col16 = valores[15].ToString();
+                                            //string col17 = valores[16].ToString();
+                                            //string col18 = valores[17].ToString();
+                                            //string col19 = valores[18].ToString();
+                                            //string col20 = valores[19].ToString();
+                                            string Af_weight = valores[20].ToString();
+                                            string Af_count = valores[21].ToString();
+                                            string clave = valores[22].ToString();
+                                            string Av_cmd_code = clave.Replace("'", "");
+                                            string descrip = valores[23].ToString();
+                                            string Av_cmd_description = descrip.Replace("\"", "");
+                                            string Av_countunit = valores[24].ToString();
+                                            //string col26 = valores[25].ToString();
+                                            //string col27 = valores[26].ToString();
+                                            //string col28 = valores[27].ToString();
+                                            //string col29 = valores[28].ToString();
+                                            //string col30 = valores[29].ToString();
+                                            //string col31 = valores[30].ToString();
+                                            //string col32 = valores[31].ToString();
+                                            //string col33 = valores[32].ToString();
+                                            //string col34 = valores[33].ToString();
+                                            //string col35 = valores[34].ToString();
+                                            //string col36 = valores[35].ToString();
+                                            //string col37 = valores[36].ToString();
 
-                                            //facLabControler.GetMerc(Ai_orden, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
-
-                                        }
-                                    }
-                                    counter++;
-                                }
-                                facLabControler.DeleteMerca(segmentod);
-                                //string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
-                                string destinationFile = @"C:\Administración\Proyecto DHL\Procesadas\" + item.Name;
-                                System.IO.File.Move(sourceFile, destinationFile);
-
-
-                                int segm = Int32.Parse(segmentod);
-                                var request28196 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico=" + segm);
-                                var response28196 = (HttpWebResponse)request28196.GetResponse();
-                                var responseString28196 = new StreamReader(response28196.GetResponseStream()).ReadToEnd();
-
-                                List<ModelFact> separados819 = JsonConvert.DeserializeObject<List<ModelFact>>(responseString28196);
-                                //PASO 2 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
-                                if (separados819 != null)
-                                {
-                                    foreach (var rlist in separados819)
-                                    {
-                                        string serie = rlist.serie;
-                                        if (serie == "TDRXP")
-                                        {
-                                            string tipomensaje = "9";
-                                            DataTable updateLegs = facLabControler.UpdateLeg(segmentod, tipomensaje);
-                                            string titulo = "Error en el segmento: ";
-                                            string mensaje = "Error la carta porte  ya fue timbrada";
-                                            facLabControler.enviarNotificacion(segmentod, titulo, mensaje);
-
-                                        }
-                                        else
-                                        {
-                                            DataTable res = facLabControler.GetSegmentoRepetido(segmentod);
-                                            //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
-                                            if (res.Rows.Count > 0)
+                                            if (Av_cmd_code != "")
                                             {
-                                                //string foliorepetido = item2["segmento"].ToString();
-                                                //Console.WriteLine("El Folio ya esta timbrado" + foliorepetido);
 
-                                                foreach (DataRow gsegt in res.Rows)
+                                                facLabControler.GetMerc(Ai_orden, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
+
+                                            }
+
+                                        }
+                                        //FIN EXTRACCIÓN
+                                        facLabControler.DeleteMerc(Ai_orden);
+                                        string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\DHLPROCESADAS\" + item.Name;
+                                        //string destinationFile = @"C:\Administración\Proyecto DHL\Procesadas\" + item.Name;
+                                        System.IO.File.Move(sourceFile, destinationFile);
+                                        //facLabControler.DeleteMerc(Ai_orden);
+
+
+
+
+                                        //string esegmentoa = "254";
+                                        int segm = Int32.Parse(esegmento);
+                                        var request2819 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico=" + segm);
+                                        var response2819 = (HttpWebResponse)request2819.GetResponse();
+                                        var responseString2819 = new StreamReader(response2819.GetResponseStream()).ReadToEnd();
+
+                                        List<ModelFact> separados819 = JsonConvert.DeserializeObject<List<ModelFact>>(responseString2819);
+                                        //PASO 2 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                        if (separados819 != null)
+                                        {
+                                            foreach (var rlist in separados819)
+                                            {
+                                                string serie = rlist.serie;
+                                                if (serie == "TDRXP")
                                                 {
-                                                    string resst = gsegt["Serie"].ToString();
-                                                    if (resst == "TDRXP")
+                                                    DataTable vstatus = facLabControler.ExisteStatus(esegmento);
+                                                    foreach (DataRow lstu in vstatus.Rows)
                                                     {
-                                                        DataTable vstatus = facLabControler.ExisteStatus(segmentod);
-                                                        foreach (DataRow lstu in vstatus.Rows)
-                                                        {
-                                                            string estatus = lstu["estatus"].ToString();
-                                                            int vsegm = Int32.Parse(estatus);
+                                                        string estatus = lstu["estatus"].ToString();
+                                                        int vsegm = Int32.Parse(estatus);
 
-                                                            if (vsegm != 2)
+                                                        if (vsegm != 2)
+                                                        {
+                                                            string tipomensaje = "9";
+                                                            DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                            string titulo = "Error en el segmento: ";
+                                                            string mensaje = "Error la carta porte ya fue timbrada.";
+                                                            facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                        }
+                                                        else
+                                                        {
+                                                            string titulo = "Error en el segmento: ";
+                                                            string mensaje = "Error la carta porte ya fue timbrada.";
+                                                            facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                        }
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    DataTable res = facLabControler.GetSegmentoRepetido(esegmento);
+                                                    //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                    if (res.Rows.Count > 0)
+                                                    {
+                                                        //string foliorepetido = item2["segmento"].ToString();
+                                                        //Console.WriteLine("El Folio ya esta timbrado" + foliorepetido);
+                                                        foreach (DataRow gsegt in res.Rows)
+                                                        {
+                                                            string resst = gsegt["Serie"].ToString();
+                                                            if (resst == "TDRXP")
                                                             {
-                                                                string tipomensaje = "9";
-                                                                DataTable updateLegs = facLabControler.UpdateLeg(segmentod, tipomensaje);
-                                                                string titulo = "Error en el segmento: ";
-                                                                string mensaje = "Error la carta porte ya fue timbrada.";
-                                                                facLabControler.enviarNotificacion(segmentod, titulo, mensaje);
+                                                                DataTable vstatus = facLabControler.ExisteStatus(esegmento);
+                                                                foreach (DataRow lstu in vstatus.Rows)
+                                                                {
+                                                                    string estatus = lstu["estatus"].ToString();
+                                                                    int vsegm = Int32.Parse(estatus);
+
+                                                                    if (vsegm != 2)
+                                                                    {
+                                                                        string tipomensaje = "9";
+                                                                        DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                                        string titulo = "Error en el segmento: ";
+                                                                        string mensaje = "Error la carta porte ya fue timbrada.";
+                                                                        facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        string titulo = "Error en el segmento: ";
+                                                                        string mensaje = "Error la carta porte ya fue timbrada.";
+                                                                        facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                                    }
+                                                                }
                                                             }
                                                             else
                                                             {
-                                                                string titulo = "Error en el segmento: ";
-                                                                string mensaje = "Error la carta porte ya fue timbrada.";
-                                                                facLabControler.enviarNotificacion(segmentod, titulo, mensaje);
+                                                                DataTable results = facLabControler.TieneMercancias(esegmento);
+                                                                //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                                foreach (DataRow resl in results.Rows)
+                                                                {
+                                                                    string totald = resl["total"].ToString();
+                                                                    int num_var = Int32.Parse(totald);
+                                                                    if (num_var > 0)
+                                                                    {
+
+                                                                        valida(esegmento);
+
+                                                                    }
+                                                                }
                                                             }
                                                         }
+
                                                     }
-                                                    else
+                                                    else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
                                                     {
-                                                        DataTable results = facLabControler.TieneMercancias(segmentod);
+                                                        DataTable results = facLabControler.TieneMercancias(esegmento);
                                                         //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
                                                         foreach (DataRow resl in results.Rows)
                                                         {
@@ -208,7 +276,65 @@ namespace TADHL
                                                             if (num_var > 0)
                                                             {
 
-                                                                valida(segmentod);
+
+                                                                valida(esegmento);
+
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            //PASO 3 - VALIDA QUE NO ESTE REGISTRADO EN LA VISTA_CARTA_PORTE
+                                            DataTable res = facLabControler.GetSegmentoRepetido(esegmento);
+                                            //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                            if (res.Rows.Count > 0)
+                                            {
+                                                //string foliorepetido = item2["segmento"].ToString();
+                                                //Console.WriteLine("El Folio ya esta timbrado" + esegmento);
+                                                foreach (DataRow gsegt in res.Rows)
+                                                {
+                                                    string resst = gsegt["Serie"].ToString();
+                                                    if (resst == "TDRXP")
+                                                    {
+                                                        DataTable vstatus = facLabControler.ExisteStatus(esegmento);
+                                                        foreach (DataRow lstu in vstatus.Rows)
+                                                        {
+                                                            string estatus = lstu["estatus"].ToString();
+                                                            int vsegm = Int32.Parse(estatus);
+
+                                                            if (vsegm != 2)
+                                                            {
+                                                                string tipomensaje = "9";
+                                                                DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                                string titulo = "Error en el segmento: ";
+                                                                string mensaje = "Error la carta porte ya fue timbrada.";
+                                                                facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                            }
+                                                            else
+                                                            {
+                                                                string titulo = "Error en el segmento: ";
+                                                                string mensaje = "Error la carta porte ya fue timbrada.";
+                                                                facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        DataTable results = facLabControler.TieneMercancias(esegmento);
+                                                        //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                        foreach (DataRow resl in results.Rows)
+                                                        {
+                                                            string totald = resl["total"].ToString();
+                                                            int num_var = Int32.Parse(totald);
+                                                            if (num_var > 0)
+                                                            {
+
+                                                                valida(esegmento);
 
                                                             }
                                                         }
@@ -217,7 +343,7 @@ namespace TADHL
                                             }
                                             else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
                                             {
-                                                DataTable results = facLabControler.TieneMercancias(segmentod);
+                                                DataTable results = facLabControler.TieneMercancias(esegmento);
                                                 //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
                                                 foreach (DataRow resl in results.Rows)
                                                 {
@@ -226,89 +352,19 @@ namespace TADHL
                                                     if (num_var > 0)
                                                     {
 
-
-                                                        valida(segmentod);
+                                                        valida(esegmento);
 
                                                     }
                                                 }
                                             }
 
                                         }
-                                    }
 
+
+
+                                    }
                                 }
-                                else
-                                {
-                                    //PASO 3 - VALIDA QUE NO ESTE REGISTRADO EN LA VISTA_CARTA_PORTE
-                                    DataTable res = facLabControler.GetSegmentoRepetido(segmentod);
-                                    //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
-                                    if (res.Rows.Count > 0)
-                                    {
-                                        //string foliorepetido = item2["segmento"].ToString();
-                                        //Console.WriteLine("El Folio ya esta timbrado" + esegmento);
-                                        foreach (DataRow gsegt in res.Rows)
-                                        {
-                                            string resst = gsegt["Serie"].ToString();
-                                            if (resst == "TDRXP")
-                                            {
-                                                DataTable vstatus = facLabControler.ExisteStatus(segmentod);
-                                                foreach (DataRow lstu in vstatus.Rows)
-                                                {
-                                                    string estatus = lstu["estatus"].ToString();
-                                                    int vsegm = Int32.Parse(estatus);
 
-                                                    if (vsegm != 2)
-                                                    {
-                                                        string tipomensaje = "9";
-                                                        DataTable updateLegs = facLabControler.UpdateLeg(segmentod, tipomensaje);
-                                                        string titulo = "Error en el segmento: ";
-                                                        string mensaje = "Error la carta porte ya fue timbrada.";
-                                                        facLabControler.enviarNotificacion(segmentod, titulo, mensaje);
-                                                    }
-                                                    else
-                                                    {
-                                                        string titulo = "Error en el segmento: ";
-                                                        string mensaje = "Error la carta porte ya fue timbrada.";
-                                                        facLabControler.enviarNotificacion(segmentod, titulo, mensaje);
-                                                    }
-                                                }
-                                            }
-                                            else
-                                            {
-                                                DataTable results = facLabControler.TieneMercancias(segmentod);
-                                                //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
-                                                foreach (DataRow resl in results.Rows)
-                                                {
-                                                    string totald = resl["total"].ToString();
-                                                    int num_var = Int32.Parse(totald);
-                                                    if (num_var > 0)
-                                                    {
-
-                                                        valida(segmentod);
-
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
-                                    {
-                                        DataTable results = facLabControler.TieneMercancias(segmentod);
-                                        //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
-                                        foreach (DataRow resl in results.Rows)
-                                        {
-                                            string totald = resl["total"].ToString();
-                                            int num_var = Int32.Parse(totald);
-                                            if (num_var > 0)
-                                            {
-
-                                                valida(segmentod);
-
-                                            }
-                                        }
-                                    }
-
-                                }
                             }
                         }
 
@@ -392,8 +448,8 @@ namespace TADHL
                                         }
                                         //FIN EXTRACCIÓN
                                         facLabControler.DeleteMerc(Ai_orden);
-                                        //string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\DHLPROCESADAS\" + item.Name;
-                                        string destinationFile = @"C:\Administración\Proyecto DHL\Procesadas\" + item.Name;
+                                        string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\DHLPROCESADAS\" + item.Name;
+                                        //string destinationFile = @"C:\Administración\Proyecto DHL\Procesadas\" + item.Name;
                                         System.IO.File.Move(sourceFile, destinationFile);
                                         //facLabControler.DeleteMerc(Ai_orden);
 

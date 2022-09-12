@@ -12,3 +12,7 @@ C:\Users\Lenovo\source\repos\TADHL\TADHL\obj\Debug\TADHL.csproj.CoreCompileInput
 C:\Users\Lenovo\source\repos\TADHL\TADHL\obj\Debug\TADHL.csproj.CopyComplete
 C:\Users\Lenovo\source\repos\TADHL\TADHL\obj\Debug\TADHL.exe
 C:\Users\Lenovo\source\repos\TADHL\TADHL\obj\Debug\TADHL.pdb
+C:\Users\Lenovo\source\repos\TADHL\TADHL\bin\Debug\TADHL.exe.manifest
+C:\Users\Lenovo\source\repos\TADHL\TADHL\bin\Debug\TADHL.application
+C:\Users\Lenovo\source\repos\TADHL\TADHL\obj\Debug\TADHL.exe.manifest
+C:\Users\Lenovo\source\repos\TADHL\TADHL\obj\Debug\TADHL.application

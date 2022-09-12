@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="TADHL.exe" version="1.0.0.0" publicKeyToken="0c194c8d7577f409" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="TADHL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="TADHL.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si quiere cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el
+          nodo requestedExecutionLevel por alguno de los siguientes.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         Si desea usar la virtualización de archivos y del Registro para la
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="512000">
+      <assemblyIdentity name="Newtonsoft.Json" version="6.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>OxV/r0K4/V0U2+bLjmfF3v7jrg47d/MyeGpEY3/tzSU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RestSharp.dll" size="167936">
+      <assemblyIdentity name="RestSharp" version="105.1.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>WJufygC/0ScVUvow/cA7UlAaI5Q5U0nHI+aWyQlYrwc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TADHL.exe" size="76264">
+      <assemblyIdentity name="TADHL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>8uGKCM8jalYenBfVkXXCp3X8xwY3BhdeX4a6FSf79Yk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tamir.SharpSSH.dll" size="212992">
+      <assemblyIdentity name="Tamir.SharpSSH" version="1.1.1.13" language="neutral" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>htQsNJgDZNZQLxm6zeZ21Pg8IAeM2uVT30+9qJjewsk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="TADHL.exe.config" size="2385">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>bj+pIAXph/KUTBhpErJHJ33nfwhT1yhEBjB8+N5IUSk=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-CV57FOU\Lenovo" issuerKeyHash="eabc0877fbaccb027c9b72905943c9d6b3021d32" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>ec6zOksaveR2U/8By2T8N4rdnqQJMgFOzAy1aBpZgT0=</DigestValue></Reference></SignedInfo><SignatureValue>UgpVaEQnXXQkwVbBM+Yox/LZugLhHD9KUSkPNijThZY+thCXRzh9Ip5gz0Q0ulhvS8oKAjb0R0qtdqOe3vg9FrYI9VGCNG1oITqq56ka4yx+moFX3PiyUvrMizgoAK+295rJP9qjB+FniRBx3akWVsqnKZ4/7ij2bnSmjmWsb3k=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>szuHIahVIjl024azk8hXEBMdTlgCRseVHfm31bIK2Vz9jIHPUW7W4hhX8lZTHFQZ7pIZRUQ0kuFPzl38Qb+cLZLjo1p/LFxQ+IFlMbCiGyL+QMp16s6Asr/Cvz+zqZ8GNVdyrMkmbqHwjT7j+CKS2hT04Cxp65P2GpPEt7o/xp0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="3d81591a68b50ccc4e013209a49edd8a37fc64cb01ff5376e4bd1a4b3ab3ce79" Description="" Url=""><as:assemblyIdentity name="TADHL.exe" version="1.0.0.0" publicKeyToken="0c194c8d7577f409" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-CV57FOU\Lenovo</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>D8Lm6IBKwDStBzEvVV3MO/ssBwl9/Qddum3dqlB1dzQ=</DigestValue></Reference></SignedInfo><SignatureValue>ojTJn3QekfOudEHumfPpeZJS/xrv6dWs3asid37QmC//5YvFDJXSLIF0gMhmP8WmxbExsSbxUWNZiOpzpAratbS7fzH8E3qFAQj76/aKcvXDRj8lbha39E96lU/O15UjpU+nf6s0Plkr0Ux6FZau6KdLnpt3706czyzxGvi7C24=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>szuHIahVIjl024azk8hXEBMdTlgCRseVHfm31bIK2Vz9jIHPUW7W4hhX8lZTHFQZ7pIZRUQ0kuFPzl38Qb+cLZLjo1p/LFxQ+IFlMbCiGyL+QMp16s6Asr/Cvz+zqZ8GNVdyrMkmbqHwjT7j+CKS2hT04Cxp65P2GpPEt7o/xp0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB8TCCAVqgAwIBAgIQGjSzQCKkb6FNj6ZtZ31rXTANBgkqhkiG9w0BAQsFADA3MTUwMwYDVQQDHiwARABFAFMASwBUAE8AUAAtAEMAVgA1ADcARgBPAFUAXABMAGUAbgBvAHYAbzAeFw0yMjA5MTIxODI0MThaFw0yMzA5MTMwMDI0MThaMDcxNTAzBgNVBAMeLABEAEUAUwBLAFQATwBQAC0AQwBWADUANwBGAE8AVQBcAEwAZQBuAG8AdgBvMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzO4chqFUiOXTbhrOTyFcQEx1OWAJGx5Ud+bfVsgrZXP2Mgc9RbtbiGFfyVlMcVBnukhlFRDSS4U/OXfxBv5wtkuOjWn8sXFD4gWUxsKIbIv5AynXqzoCyv8K/P7OpnwY1V3KsySZuofCNPuP4IpLaFPTgLGnrk/Yak8S3uj/GnQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAAz8BWHqiyjyHdo+gajoyws+tXgbpKdD0AC+Mr6/qDL52lYfF6ShI/SfdFFiPBDQj/RqqBqCmE3mFxZCieJGE/dKijXmtBK9OrI5wVrNW46fLmq+w/tXIRArBRxTCE2TJoE0IxSsatCHuJjBcbuzWTDEdbk3fkPA58rkftRLgBeD</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
