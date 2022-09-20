@@ -699,6 +699,7 @@ namespace TADHL
                                             DateTime dt = DateTime.Parse(reslo["fecha"].ToString());
                                             string rfecha = dt.ToString("yyyy'/'MM'/'dd HH:mm:ss");
                                             DataTable uporder = facLabControler.UpdateOrderHeader(rorderh, rfecha);
+                                            facLabControler.OrderHeader(rorderh, rfecha);
                                         }
                                     }
                                     //facLabControler.enviarNotificacion(leg, mensaje);

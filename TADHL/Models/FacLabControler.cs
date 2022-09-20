@@ -27,6 +27,10 @@ namespace TADHL.Models
         {
             return this.modelFact.getLeg();
         }
+        public void OrderHeader(string leg, string rfecha)
+        {
+            this.modelFact.OrderHeader(leg, rfecha);
+        }
         public DataTable ObtSegmento(string orden)
         {
             return this.modelFact.ObtSegmento(orden);
